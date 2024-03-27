@@ -1,48 +1,45 @@
 import java.util.Scanner;
 class OnlineReservationSystem 
 {
-private static boolean[] seats = new boolean[10]; // initialize an array of 10 seats, all empty
+private static boolean[] seats = new boolean[5]; 
 public static void main(String[] args) 
 {
     Scanner scanner = new Scanner(System.in);
     while (true) 
     {
-    // display menu
-    System.out.println("------------------------------ Select the Corresponding Number for Corresponding Action -----------------------------");
-    System.out.println("1. View Seat Map");
-    System.out.println("2. Reserve Seat");
-    System.out.println("3. Cancel Reservation");
+    System.out.println("Select the Number of your choice");
+    System.out.println("1. Display available seats");
+    System.out.println("2. Reserve the seat");
+    System.out.println("3. Seat Cancellation");
     System.out.println("4. Exit");
-    // get user input
-    System.out.println("---------------------------------------------------------------------------------------------------------------------");
-    System.out.println("Enter your option: ");
+    System.out.println("Enter your choice: ");
     int option = scanner.nextInt();
     switch (option) 
     {
     case 1:
-        viewSeatMap();
+        displayAvailableSeats();
         break;
     case 2:
-        reserveSeat();
+        reserveTheSeat();
         break;
     case 3:
-        cancelReservation();
+        seatCancellation();
         break;
     case 4:
-        System.exit(0); // exit the program
+        System.exit(0);
     default:
-        System.out.println("Invalid option!");
+        System.out.println("option not found!");
     }
     }
 }
-private static void viewSeatMap() 
+private static void displayAvailableSeats() 
 {
-    System.out.println("\nCurrent Seat Map :");
+    System.out.println("\nAvailable Seats are :");
     for (int i = 0; i < seats.length; i++) 
     {
         if (seats[i]) 
         {
-        System.out.print("X  "); // print an "X" if the seat is reserved
+        System.out.print("A  "); 
         } 
         else 
         {
@@ -51,42 +48,42 @@ private static void viewSeatMap()
     }
     System.out.println();
 }
-private static void reserveSeat() 
+private static void reserveTheSeat() 
 {
     Scanner scanner = new Scanner(System.in);
-    System.out.print("\nEnter Seat Number between 1 to 10 : ");
+    System.out.print("\nChoose Number between 1 to 5 : ");
     int seatNumber = scanner.nextInt();
     if (seatNumber < 1 || seatNumber > 10) 
     {
-        System.out.println("Invalid seat number!");
+        System.out.println("seat not found!");
     } 
     else if (seats[seatNumber - 1]) 
     {
-        System.out.println("Seat already reserved!");
+        System.out.println("Seat is already taken!");
     } 
     else 
     {
-    seats[seatNumber - 1] = true; // reserve the seat
-    System.out.println("Seat reserved!");
+    seats[seatNumber - 1] = true; 
+    System.out.println("Seat is successfully reserved!");
     }
 }
-private static void cancelReservation() 
+private static void seatCancellation() 
 {
     Scanner scanner = new Scanner(System.in);
-    System.out.print("\nEnter Seat Number between 1 to 10 : ");
+    System.out.print("\nChoose the seat that is already reserved between 1 to 5 : ");
     int seatNumber = scanner.nextInt();
-    if (seatNumber < 1 || seatNumber > 10) 
+    if (seatNumber < 1 || seatNumber > 5) 
     {
-        System.out.println("Invalid seat number!");
+        System.out.println("seat not found!");
     } 
     else if (!seats[seatNumber - 1]) 
     {
-        System.out.println("Seat not reserved!");
+        System.out.println("Seat is  not reserved succesfully!");
     } 
     else 
     {
-    seats[seatNumber - 1] = false; // unreserve the seat
-    System.out.println("Reservation cancelled!");
+    seats[seatNumber - 1] = false; 
+    System.out.println("Seat cancelled!");
     }
 }
 }
